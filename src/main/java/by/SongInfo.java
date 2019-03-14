@@ -1,24 +1,35 @@
 package by;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.regex.Pattern;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
+import org.apache.tika.parser.mp3.Mp3Parser;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+
+import java.io.*;
 
 class SongInfo {
 
     void getInfo(File file) throws IOException {
-        RandomAccessFile random = new RandomAccessFile(file, "r");
-        StringBuilder sb = new StringBuilder();
-        for (long i = 0; i < 400; i++) {
-            char a = (char) random.read();
-            String str = String.valueOf(a);
-            sb.append(str);
-            if (str.matches("[A-Za-zА-Яа-яеЁ0-9\\s]")) {
-                System.out.print(a);
-            }
-//            String str2 = new String(sb);
-//            Pattern album = Pattern.compile("[TALB]") surefire plugin
+        try (InputStream input = new FileInputStream(file)) {
+            ContentHandler handler = new DefaultHandler();
+            Metadata metadata = new Metadata();
+            Parser parser = new Mp3Parser();
+            ParseContext parseCtx = new ParseContext();
+            parser.parse(input, handler, metadata, parseCtx);
+
+            Utils.artist.put(Utils.count, metadata.get("xmpDM:artist"));
+            Utils.genre.put(Utils.count, metadata.get("xmpDM:genre"));
+            Utils.album.put(Utils.count, metadata.get("xmpDM:album"));
+            Utils.year.put(Utils.count, metadata.get("xmpDM:releaseDate"));
+
+            Utils.count++;
+        } catch (TikaException | SAXException e) {
+            e.printStackTrace();
         }
     }
 }

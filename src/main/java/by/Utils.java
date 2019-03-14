@@ -1,12 +1,13 @@
 package by;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Utils {
-    static ArrayList<String> artist = new ArrayList<>();
-    static ArrayList<String> songname = new ArrayList<>();
-    static ArrayList<String> album = new ArrayList<>();
-    static ArrayList<String> year = new ArrayList<>();
-    static ArrayList<String> comment = new ArrayList<>();
-    static ArrayList<String> genre = new ArrayList<>();
+    static volatile int count = 0;
+    static HashMap<Integer, String> artist = new HashMap<>();
+    static HashMap<Integer, String> songname = new HashMap<>();
+    static HashMap<Integer, String> album = new HashMap<>();
+    static HashMap<Integer, String> year = new HashMap<>();
+    static HashMap<Integer, String> comment = new HashMap<>();
+    static HashMap<Integer, String> genre = new HashMap<>();
 }
