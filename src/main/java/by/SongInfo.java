@@ -18,7 +18,7 @@ class SongInfo {
                 System.out.print(a);
             }
 //            String str2 = new String(sb);
-//            Pattern album = Pattern.compile("[TALB]")
+//            Pattern album = Pattern.compile("[TALB]") surefire plugin
         }
     }
 }
