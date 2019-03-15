@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class Parser {
+class FilesInDirectory {
 
-    static ArrayList<File> getDir(String dir){
+    ArrayList<File> getDir(String dir){
         ArrayList<File> listSongs = new ArrayList<>();
         Path path = Paths.get(dir);
         if (Files.isDirectory(path)) {
