@@ -16,29 +16,29 @@ public class Song {
     private String genre;
     private String year;
 
-    String getArtist() {
+    public String getArtist() {
         return artist;
     }
 
-    String getSong() {
+    public String getSong() {
         return song;
     }
 
-    String getAlbum() {
+    public String getAlbum() {
         return album;
     }
 
-    String getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    String getYear() {
+    public String getYear() {
         return year;
     }
 
     @Override
     public String toString() {
-        return String.format("Artist: %-20s Song: %-40s Album: %-25s Genre: %-10s Year: %-10s",
+        return String.format("Artist: %-15s Song: %-45s Album: %-25s Genre: %-10s Year: %-10s",
                 artist, song, album, genre, year);
     }
 }

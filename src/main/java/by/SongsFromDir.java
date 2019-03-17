@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class FilesInDirectory {
+class SongsFromDir {
 
-    ArrayList<File> getDir(String dir){
+    ArrayList<File> getListSong(String dir){
         ArrayList<File> listSongs = new ArrayList<>();
         Path path = Paths.get(dir);
         if (Files.isDirectory(path)) {

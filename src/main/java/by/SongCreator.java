@@ -10,12 +10,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.*;
-import java.util.Objects;
 
 class SongCreator {
 
-    private Song getInfoFromFile(File file) throws IOException {
-        try (InputStream input = new FileInputStream(file)) {
+    Song createSongFromMeta(File song) throws IOException {
+        try (InputStream input = new FileInputStream(song)) {
             ContentHandler handler = new DefaultHandler();
             Metadata metadata = new Metadata();
             Parser parser = new Mp3Parser();
@@ -34,15 +33,5 @@ class SongCreator {
         return null;
     }
 
-    void fillListSongs(String path, SongCreator creator, FilesInDirectory listFiles) {
-        Utils.songList.clear();
-        for (File file : Objects.requireNonNull(listFiles.getDir(path))) {
-            try {
-                Utils.songList.add(creator.getInfoFromFile(file));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        Utils.printSongs();
-    }
+
 }
